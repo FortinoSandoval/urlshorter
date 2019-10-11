@@ -13,7 +13,7 @@
     $scope.secondsLeft = 10;
     $scope.isProd = location.hostname !== 'localhost';
     if (location.hostname === 'localhost' && location.port !== '4000') {
-      $scope.apiUrl = 'https://coursegetter.herokuapp.com';
+      $scope.apiUrl = 'http://shrinker.techcoursesite.com';
     }
 
     $scope.generateLink = () => {
