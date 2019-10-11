@@ -37,6 +37,59 @@
   margin-bottom: 1em;
 }
 
+button.btn {
+	display: inline-block;
+	color: #666;
+	background-color: #eee;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 12px;
+	padding: 10px 30px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid rgba(0,0,0,0.3);
+	border-bottom-width: 3px;
+}
+
+	button.btn:hover {
+		background-color: #e3e3e3;
+		border-color: rgba(0,0,0,0.5);
+	}
+	
+	button.btn:active {
+		background-color: #CCC;
+		border-color: rgba(0,0,0,0.9);
+	}
+
+/* blue button */
+
+button.btn.btn-blue {
+	background-color: #699DB6;
+	border-color: rgba(0,0,0,0.3);
+	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+	color: #FFF;
+}
+
+	button.btn.btn-blue:hover:enabled {
+		background-color: #4F87A2;
+		border-color: rgba(0,0,0,0.5);
+	}
+	
+	button.btn.btn-blue:active:enabled {
+		background-color: #3C677B;
+		border-color: rgba(0,0,0,0.9);
+  }
+
+  button:disabled,
+  button[disabled]{
+    opacity: 0.6;
+    &:hover{ 
+      cursor: not-allowed;
+    }
+  }
+
+
 #countdown {
   border: 2px solid #0f556669;
   width: 100px;

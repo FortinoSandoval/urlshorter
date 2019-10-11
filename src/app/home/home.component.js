@@ -9,6 +9,7 @@
   /** @ngInject */
   function HomeController($state, $http, $scope, $interval, $location, $window) {
     $scope.courseId = $location.search().course;
+    $location.search('course', null)
     if (!$scope.courseId) {
       window.location = 'http://techcoursesite.com';
       return;
@@ -20,14 +21,14 @@
       $scope.apiUrl = 'http://shrinker.techcoursesite.com';
     }
 
-    $http.get(`http://localhost:4000/getcourse/${btoa($scope.courseId)}`, {responseType:'blob'}).then((res) => {
+    $http.get(`$scope.apiUrl/${btoa($scope.courseId)}`, {responseType:'blob'}).then((res) => {
       var blob = new Blob([res.data], { type: "application/octet-stream" });
       
-      const url = $window.URL || $window.webkitURL;
-  $scope.fileUrl = url.createObjectURL(blob);
-
-    
-    
+      var url = window.URL || window.webkitURL;
+      $scope.downloadLink = angular.element('<a></a>');
+      $scope.downloadLink.attr('href',url.createObjectURL(blob));
+      $scope.downloadLink.attr('target','_self');
+      $scope.downloadLink.attr('download', $scope.courseId + '.torrent');
     }).catch(err => {
       console.log(err);
     });
@@ -46,8 +47,9 @@
     };
 
     $scope.downloadFile = () => {
-      if ($scope.secondsLeft > 0) return;
-      console.log('downloaded');
+      if ($scope.secondsLeft > 0 || $scope.downloaded) return;
+      $scope.downloadLink[0].click();
+      $scope.downloaded = true;
     };
 
   }

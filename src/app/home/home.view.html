@@ -21,7 +21,7 @@
 
 <section class="section">
   <div class="container" style="text-align:center;">
-    <div id="436857463" ng-if="isProd">
+    <div id="436857463" ng-if="isProd" style="margin: 0 auto;">
       <script type="text/javascript">
         try {
           window._mNHandle.queue.push(function() {
@@ -30,17 +30,46 @@
         } catch (error) {}
       </script>
     </div>
-    <a ng-href="{{ fileUrl }}" download="The Build a SAAS App with Flask Course.torrent">download</a>
-    <button ng-click="generateLink()" ng-if="!generateLinkClicked">Get Link</button>
+    <div id="354282014" ng-if="isProd" style="margin: 0 auto;">
+      <script type="text/javascript">
+        try {
+          window._mNHandle.queue.push(function() {
+            window._mNDetails.loadTag('354282014', '300x250', '354282014');
+          });
+        } catch (error) {}
+      </script>
+    </div>
+    <button
+      class="btn btn-blue"
+      ng-click="generateLink()"
+      ng-if="!generateLinkClicked"
+    >
+      Get Link
+    </button>
     <div ng-if="generateLinkClicked">
       <p class="almost-ready">Your link is almost ready!</p>
       <span id="countdown">
-        <span id="timer">{{secondsLeft}}</span>
-        <br>
+        <span id="timer">{{ secondsLeft }}</span>
+        <br />
         Seconds
       </span>
-      <br>
-      <button ng-disabled="secondsLeft > 0" ng-click="downloadFile()">Download</button>
+      <br />
+      <button
+        class="btn btn-blue"
+        ng-disabled="secondsLeft > 0 || downloaded"
+        ng-click="downloadFile()"
+      >
+        Download
+      </button>
+    </div>
+    <div id="507583342" ng-if="isProd" style="margin: 0 auto;">
+      <script type="text/javascript">
+        try {
+          window._mNHandle.queue.push(function() {
+            window._mNDetails.loadTag('507583342', '300x600', '507583342');
+          });
+        } catch (error) {}
+      </script>
     </div>
   </div>
 </section>
