@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/dist/index.html'));
 });
 
-app.get('/getcourse/:name', (req, res) => {
+app.post('/getcourse/:name', (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) {
       res.send(err);
