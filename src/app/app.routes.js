@@ -6,7 +6,7 @@
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider.state('home', {
-      url: '/',
+      url: '/:course',
       component: 'home',
     });
 
