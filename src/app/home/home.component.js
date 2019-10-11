@@ -7,8 +7,8 @@
   });
 
   /** @ngInject */
-  function HomeController($state, $http, $scope, $interval) {
-    $scope.courseId = $state.params.course;
+  function HomeController($state, $http, $scope, $interval, $location, $window) {
+    $scope.courseId = $location.search().course;
     if (!$scope.courseId) {
       window.location = 'http://techcoursesite.com';
       return;
@@ -20,9 +20,14 @@
       $scope.apiUrl = 'http://shrinker.techcoursesite.com';
     }
 
-    console.log(btoa($scope.courseId));
-    $http.post(`${$scope.apiUrl}/getcourse/${btoa($scope.courseId)}`, {}).then(res => {
-      console.log(res);
+    $http.get(`http://localhost:4000/getcourse/${btoa($scope.courseId)}`, {responseType:'blob'}).then((res) => {
+      var blob = new Blob([res.data], { type: "application/octet-stream" });
+      
+      const url = $window.URL || $window.webkitURL;
+  $scope.fileUrl = url.createObjectURL(blob);
+
+    
+    
     }).catch(err => {
       console.log(err);
     });

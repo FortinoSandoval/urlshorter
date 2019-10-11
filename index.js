@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/dist/index.html'));
 });
 
-app.post('/getcourse/:name', (req, res) => {
+app.get('/getcourse/:name', (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) {
       res.send(err);
@@ -41,8 +41,8 @@ app.post('/getcourse/:name', (req, res) => {
         if (result.length) {
           var fileData = new Buffer.from(result[0].tnt);
           res.writeHead(200, {
+            'Content-Disposition': `attachment; filename="${originalName}.torrent"`,
             'Content-Type': result[0].type,
-            'Content-Disposition': `attachment; filename=${originalName}.torrent`,
             'Content-Length': fileData.length
           });
           res.write(fileData);

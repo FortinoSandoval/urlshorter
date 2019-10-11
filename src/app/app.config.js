@@ -5,7 +5,7 @@
 
   /** @ngInject */
   function configBlock($locationProvider, $logProvider, $translateProvider,
-                       tmhDynamicLocaleProvider) {
+                       tmhDynamicLocaleProvider, $compileProvider) {
     $locationProvider.
         html5Mode(true);
 
@@ -21,7 +21,9 @@
         preferredLanguage('en').
         fallbackLanguage('en').
         useSanitizeValueStrategy('escape').
-        useMissingTranslationHandlerLog();
+      useMissingTranslationHandlerLog();
+    
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|file|blob):/);
 
     tmhDynamicLocaleProvider.
         // Angular locales pattern used by `buildAngularLocales()` in
