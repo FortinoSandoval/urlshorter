@@ -21,7 +21,7 @@
       $scope.apiUrl = 'http://shrinker.techcoursesite.com';
     }
 
-    $http.get(`$scope.apiUrl/${btoa($scope.courseId)}`, {responseType:'blob'}).then((res) => {
+    $http.get(`${$scope.apiUrl}/${btoa($scope.courseId)}`, {responseType:'blob'}).then((res) => {
       var blob = new Blob([res.data], { type: "application/octet-stream" });
       
       var url = window.URL || window.webkitURL;
