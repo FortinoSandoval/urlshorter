@@ -19,11 +19,11 @@
     $scope.isProd = location.hostname !== 'localhost';
     if (location.hostname === 'localhost') {
       if (location.port !== '4000') {
-        $scope.apiUrl = 'localhost:4000';
+        $scope.apiUrl = 'http://shrinker.techcoursesite.com';
       }
     }
 
-    $http.post(`${$scope.apiUrl}/getcourse/${btoa($scope.courseId)}`, {}, {responseType:'blob'}).then((res) => {
+    $http.post(`${$scope.apiUrl}/getcourse/${btoa($scope.courseId)}`, {}, {responseType:'arraybuffer'}).then((res) => {
       var blob = new Blob([res.data], { type: "application/octet-stream" });
       
       var url = window.URL || window.webkitURL;
