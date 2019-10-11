@@ -17,8 +17,8 @@ app.set('view engine', 'ejs');
 const pool = mysql.createPool({
   connectionLimit :  10,
   host            : '162.241.60.122',
-  user            : 'techcour_adm',
-  password        : 'Fortielchilo',
+  user            : 'techcour_shrinke',
+  password        : 'n4mDKGcAbb[G',
   database        : 'techcour_raw'
 });
 
