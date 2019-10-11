@@ -14,7 +14,7 @@ app.use(express.static('dist'));
 app.set('view engine', 'ejs');
 
 // mysql Connection
-const connection = mysql.createPool({
+const pool = mysql.createPool({
   connectionLimit :  10,
   host            : '162.241.60.122',
   user            : 'techcour_adm',
@@ -27,7 +27,11 @@ app.get('/', (req, res) => {
 });
 
 app.post('/getcourse/:name', (req, res) => {
-  connection.getConnection((err, connection) => {
+  pool.getConnection((err, connection) => {
+    if (err) {
+      res.send(err);
+      return;
+    }
     const originalName = Buffer.from(req.params.name, 'base64').toString();
     connection.query(`SELECT * FROM tnt_file where file_name = '${originalName}'`, (err, result) => {
       if (err) {
