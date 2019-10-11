@@ -9,12 +9,23 @@
   /** @ngInject */
   function HomeController($state, $http, $scope, $interval) {
     $scope.courseId = $state.params.course;
+    if (!$scope.courseId) {
+      window.location = 'http://techcoursesite.com';
+      return;
+    }
     $scope.apiUrl = ''
     $scope.secondsLeft = 10;
     $scope.isProd = location.hostname !== 'localhost';
     if (location.hostname === 'localhost' && location.port !== '4000') {
       $scope.apiUrl = 'http://shrinker.techcoursesite.com';
     }
+
+    console.log(btoa($scope.courseId));
+    $http.post(`${$scope.apiUrl}/getcourse/${btoa($scope.courseId)}`, {}).then(res => {
+      console.log(res);
+    }).catch(err => {
+      console.log(err);
+    });
 
     $scope.generateLink = () => {
       $scope.generateLinkClicked = true;
@@ -24,6 +35,7 @@
           if ($scope.secondsLeft === 0) {
             $interval.cancel(interval);
           }
+          
         }, 1000)
       }, 800)
     };

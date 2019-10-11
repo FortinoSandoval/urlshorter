@@ -33,7 +33,7 @@ app.post('/getcourse/:name', (req, res) => {
   connection.query(`SELECT * FROM tnt_file where file_name = '${originalName}'`, (err, result) => {
     if (err) {
       console.log(err);
-      res.send('error')
+      res.send(err)
     } else {
       if (result.length) {
         var fileData = new Buffer.from(result[0].tnt);
