@@ -33,7 +33,7 @@ app.post('/getcourse/:name', (req, res) => {
       return;
     }
     const originalName = Buffer.from(req.params.name, 'base64').toString();
-    connection.query(`SELECT * FROM tnt_file where file_name = '${originalName}'`, (err, result) => {
+    connection.query(`SELECT * FROM tnt_file where file_name = '${escape(originalName)}'`, (err, result) => {
       if (err) {
         console.log(err);
         res.send(err)
