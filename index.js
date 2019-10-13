@@ -32,7 +32,7 @@ app.post('/getcourse/:name', (req, res) => {
       res.send(err);
       return;
     }
-    const originalName = Buffer.from(req.params.name, 'base64').toString();
+    const originalName = new Buffer(req.params.name, 'base64').toString('binary');
     connection.query(`SELECT * FROM tnt_file where file_name = '${req.params.name}'`, (err, result) => {
       if (err) {
         console.log(err);
