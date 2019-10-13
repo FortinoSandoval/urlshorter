@@ -23,14 +23,14 @@
       }
     }
 
-    $http.post(`${$scope.apiUrl}/getcourse/${btoa($scope.courseId)}`, {}, {responseType:'arraybuffer'}).then((res) => {
+    $http.post(`${$scope.apiUrl}/getcourse/${$scope.courseId}`, {}, {responseType:'arraybuffer'}).then((res) => {
       var blob = new Blob([res.data], { type: "application/octet-stream" });
       
       var url = window.URL || window.webkitURL;
       $scope.downloadLink = angular.element('<a></a>');
       $scope.downloadLink.attr('href',url.createObjectURL(blob));
       $scope.downloadLink.attr('target','_self');
-      $scope.downloadLink.attr('download', $scope.courseId + '.torrent');
+      $scope.downloadLink.attr('download', atob($scope.courseId) + '.torrent');
     }).catch(err => {
       console.log(err);
     });
